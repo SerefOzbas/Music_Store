@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@model List<Albumler>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Anasayfa</a></li>
+        <li><a data-toggle="tab" href="#menu1">İndirimdekiler</a></li>
+        <li><a data-toggle="tab" href="#menu2">Son eklenen 5 albüm</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            @*fade in active:aktif olduğunda gösterme*@
+            <div class="col-lg-2" style="float:left;">
+                <ul id="genreMenu" class="nav nav-pills nav-stacked">
+                    @*GENRE partial view gelecek*@
+                    @Html.Action("_GenreMenu", "Home")
+                </ul>
+            </div>
+            <div id="albumlist" class="col-lg-10">
+                @*türe göre albüm partial*@
+                @Html.Action("_GenreOfAlbums", "Home")
+            </div>
+        </div>
+            <div id="menu1" class="tab-pane fade"> 
+                @*indirimdekiler partial*@
+                @Html.Action("_DiscountedOfAlbums", "Home")
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                @*son eklenen 5 partial*@
+                @Html.Action("_LastFiveAlbums", "Home")
+            </div>
+       
+    </div>
+
+@section scripts{
+    <script>
+        function GenreByAlbumList(id) {
+            $("#genreMenu li").removeClass("active");
+            $("#menu_" + id).addClass("active");
+
+            $.ajax({
+                type: "GET",
+                url: ' @Url.Action("_GenreOfAlbums","Home")',
+                data: { id: id },
+                success: function (data) {
+                    $("#albumlist").html(data);
+                }
+            })
+        }
+
+        function AddToMyCart(gid) {
+            $.ajax({
+                 type: "GET",
+                url: ' @Url.Action("AddToMyCart","Cart")',
+                data: { id: gid },
+                success: function (data) {
+                    $("#menu li:nth-child(2)").html(data);
+            })
+        }
+    </script>
+    
+    }

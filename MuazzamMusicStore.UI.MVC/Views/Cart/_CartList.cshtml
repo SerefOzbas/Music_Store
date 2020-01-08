@@ -1,0 +1,35 @@
+﻿<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>İsim</th>
+            <th>Fiyat</th>
+            <th>Miktar</th>
+            <th>Toplam Tutar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (CartItemDTO item in (Session["cart"] as MyCart).GetAllCartItem)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Amount @*miktar için arttırma azaltma*@</td>
+                <td>@item.SubTotal</td>
+                <td>@*sil butonu*@</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>
+                Toplam Sepet Tutarı
+            </td>
+            <td>
+                @((Session["cart"] as MyCart).GetAllCartItem.Sum(x=>x.SubTotal).ToString())
+            </td>
+        </tr>
+        <tr>
+
+        </tr>
+    </tfoot>
+</table>

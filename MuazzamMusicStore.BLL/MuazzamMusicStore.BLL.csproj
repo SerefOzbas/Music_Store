@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AFAA5F55-73FF-41EF-9F68-FC8C0E374BC0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MuazzamMusicStore.BLL</RootNamespace>
+    <AssemblyName>MuazzamMusicStore.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IAlbumService.cs" />
+    <Compile Include="Abstract\IArtistService.cs" />
+    <Compile Include="Abstract\IBaseService.cs" />
+    <Compile Include="Abstract\IGenreService.cs" />
+    <Compile Include="Abstract\IOrderService.cs" />
+    <Compile Include="Abstract\IShipperService.cs" />
+    <Compile Include="Abstract\IUserService.cs" />
+    <Compile Include="Concrete\AlbumService.cs" />
+    <Compile Include="Concrete\ArtistService.cs" />
+    <Compile Include="Concrete\GenreService.cs" />
+    <Compile Include="Concrete\OrderService.cs" />
+    <Compile Include="Concrete\ShipperService.cs" />
+    <Compile Include="Concrete\UserService.cs" />
+    <Compile Include="Ninject\CustomDALModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MuazzamMusicStore.Core\MuazzamMusicStore.Core.csproj">
+      <Project>{0e00a1f6-95ae-4cb3-9eb4-445e51a0a6b8}</Project>
+      <Name>MuazzamMusicStore.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MuazzamMusicStore.DAL\MuazzamMusicStore.DAL.csproj">
+      <Project>{132afb15-9fef-4caa-8514-cee29efce5ae}</Project>
+      <Name>MuazzamMusicStore.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MuazzamMusicStore.Model\MuazzamMusicStore.Model.csproj">
+      <Project>{248f2350-7f8d-4e8d-a955-202bd6602d34}</Project>
+      <Name>MuazzamMusicStore.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
